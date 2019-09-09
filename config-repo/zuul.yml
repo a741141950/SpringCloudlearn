@@ -1,0 +1,40 @@
+server:
+  port: 9091
+spring:
+  application:
+    name: zuul
+  datasource:
+    url: jdbc:mysql://localhost:3306/local_db?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9090/eureka
+    registryFetchIntervalSeconds: 5
+  instance:
+    preferIpAddress: true
+    ipAddress: 127.0.0.1
+    instanceId: ${spring.application.name}:${server.port}
+zuul:
+#  routes:
+#    item-service: /itemService/**
+#    item-interface1:
+  prefix: /api # 添加路由前缀
+  retryable: true
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
