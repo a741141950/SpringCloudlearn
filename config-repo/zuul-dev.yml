@@ -4,7 +4,7 @@ spring:
   application:
     name: zuul
   datasource:
-    url: jdbc:mysql://localhost:3306/local_db?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/ly?useUnicode=true&characterEncoding=utf8
     username: root
     password: root
     hikari:
