@@ -48,3 +48,8 @@ mybatis:
     jdbc-type-for-null: 'null'
 config-test:
  value: 'revert'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
